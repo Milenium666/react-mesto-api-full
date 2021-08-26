@@ -1,0 +1,42 @@
+.profile__avatar {
+    background-size: cover;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    
+}
+
+.profile__avatar::before,.profile__avatar::after{
+    content: '';
+    position: absolute;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.profile__avatar::before{
+    background: rgba(0, 0, 0, 0);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.profile__avatar::after{
+    width: 26px;
+    height: 26px;
+    background-image: url('../../../images/pen-edit.svg');
+    background-size: contain;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.profile__avatar:hover::before{
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.profile__avatar:hover::after{
+    opacity: 1;
+}

@@ -1,0 +1,9 @@
+.photo-grid__like_active {
+    width: 21px;
+    height: 19px;
+    background: url('../../../../images/like__active.svg') center no-repeat;
+    border: none;
+    cursor: pointer;
+    outline-style: none;
+    
+}

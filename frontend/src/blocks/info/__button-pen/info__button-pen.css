@@ -1,0 +1,27 @@
+.info__button-pen {
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    background-color: black;
+    outline-style: none;
+    cursor: pointer;
+    background-image: url('../../../images/pen.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+@media screen and (max-width: 767px) {
+    .info__button-pen {
+        width: 18px;
+        height: 18px;
+        background-size: 10px;
+        
+    }
+}
+
+
+
+
+.info__button-pen:hover {
+    opacity: 0.6;
+}

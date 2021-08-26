@@ -1,0 +1,47 @@
+.popup__data {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    outline: 0;
+    text-align: start;
+    padding-bottom: 13px;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.popup__data::before {
+    opacity: 0.2;
+    border-bottom: 1px solid #000000;
+}
+
+.popup__data:focus {
+    color: #000000;
+    opacity: 1;
+}
+:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+  
+  :focus::-moz-placeholder {
+    color: transparent;
+  }
+  
+  :focus:-moz-placeholder {
+    color: transparent;
+  }
+  
+  :focus:-ms-input-placeholder {
+    color: transparent;
+  }
+
+  .popup__data:invalid:not(:focus):not(:placeholder-shown) {
+    border-bottom: 1px solid #FF0000;
+  }
+
+
+
+
+

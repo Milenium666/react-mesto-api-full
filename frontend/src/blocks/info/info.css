@@ -1,0 +1,10 @@
+.info {
+    align-items: baseline;
+}
+
+@media screen and (max-width: 767px) {
+    .info {
+        
+        flex-direction: row;
+    }
+}

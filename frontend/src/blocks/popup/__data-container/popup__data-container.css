@@ -1,0 +1,9 @@
+.popup__data-container {
+    margin: 54px 0 0 0;
+    
+}
+@media screen and (max-width: 767px) {
+    .popup__data-container {
+        margin: 75px 0 25px 0;
+    }
+}

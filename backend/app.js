@@ -1,0 +1,61 @@
+/* eslint-disable import/order */
+/* eslint-disable no-console */
+// eslint-disable-next-line max-len
+// !!Защитите авторизацией все маршруты, кроме страницы регистрации и логина. При попытке неавторизованного пользователя обратиться к защищённому маршруту — возвращайте 403 ошибку.
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const DataNotFound = require('./error/DataNotFound');
+const { login, createUser } = require('./controllers/users');
+const auth = require('./middlewares/auth');
+const errorHandler = require('./middlewares/errorHandler');
+
+const { celebrate, Joi, errors } = require('celebrate');
+const validate = require('./middlewares/validate');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+
+const { PORT = 3000 } = process.env;
+
+const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+mongoose.connect('mongodb://localhost:27017/mestodb', {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+
+app.use(requestLogger);
+app.post('/signup', celebrate({
+  body: Joi.object().keys({
+    name: Joi.string().min(2).max(30),
+    about: Joi.string().min(2).max(30),
+    avatar: Joi.string().custom(validate),
+    email: Joi.string().email().required(),
+    password: Joi.string().required().min(2),
+  }).unknown(true),
+}), createUser);
+app.post('/signin', celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().email().required(),
+    password: Joi.string().required().min(2),
+  }).unknown(true),
+}), login);
+
+app.use('/', auth, require('./routes/users'));
+app.use('/', auth, require('./routes/cards'));
+
+app.use(errorLogger);
+app.use(errorHandler);
+app.use(errors());
+
+app.use((req, res, next) => {
+  next(new DataNotFound('Запрос на несуществующий адрес'));
+});
+
+app.listen(PORT, () => {
+  console.log(`Приложение слушает ${PORT}`);
+});

@@ -1,0 +1,9 @@
+.header{
+    border-bottom: 1px solid #545454;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header::before {
+    opacity: 0.7;
+}

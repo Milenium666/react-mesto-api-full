@@ -1,0 +1,13 @@
+.popup__button-save_disabled {
+    background: white;
+    color: #E5E5E5;
+    border: 1px solid #E5E5E5;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__button-save_disabled {
+        height: 46px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
