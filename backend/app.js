@@ -1,7 +1,8 @@
+/* eslint-disable prefer-template */
+/* eslint-disable no-path-concat */
 /* eslint-disable import/order */
 /* eslint-disable no-console */
 // eslint-disable-next-line max-len
-// !!Защитите авторизацией все маршруты, кроме страницы регистрации и логина. При попытке неавторизованного пользователя обратиться к защищённому маршруту — возвращайте 403 ошибку.
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -9,7 +10,7 @@ const DataNotFound = require('./error/DataNotFound');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
-
+const path = require('path');
 const { celebrate, Joi, errors } = require('celebrate');
 const validate = require('./middlewares/validate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -17,6 +18,8 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT = 3000 } = process.env;
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
