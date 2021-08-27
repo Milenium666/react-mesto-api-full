@@ -15,7 +15,7 @@ const { celebrate, Joi, errors } = require('celebrate');
 const validate = require('./middlewares/validate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 80 } = process.env;
 
 const app = express();
 
