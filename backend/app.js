@@ -14,10 +14,12 @@ const path = require('path');
 const { celebrate, Joi, errors } = require('celebrate');
 const validate = require('./middlewares/validate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { cors } = require('./middlewares/cors');
 
 const { PORT = 80 } = process.env;
 
 const app = express();
+app.use(cors);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
