@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://milenium666.nomoredomains.monster';
+export const BASE_URL = 'https://milenium666.nomoredomains.rocks';
 
 const checkResponse = (response) => response.ok ? response.json() : Promise.reject(`Ошибка: ${response.status}`)
 
