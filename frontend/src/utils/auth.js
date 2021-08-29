@@ -1,8 +1,8 @@
-export const BASE_URL = 'https://milenium666.nomoredomains.monster';
-
+// export const BASE_URL = 'milenium666.nomoredomains.rocks';
+export const BASE_URL = '';
 const checkResponse = (response) => response.ok ? response.json() : Promise.reject(`Ошибка: ${response.status}`)
 
-export const register = (password, email) => {
+export const register = ({password, email}) => {
   
     return fetch(`${BASE_URL}/signup`, {
       method: 'POST',
@@ -10,14 +10,15 @@ export const register = (password, email) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(password, email)
+      body: JSON.stringify({password, email})
 
     })
     .then(checkResponse)
   };
 
-  export const authorize = (email, password) => {
+  export const authorize = ({email, password}) => {
     return fetch(`${BASE_URL}/signin`, {
+      credentials: 'include',
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -30,6 +31,7 @@ export const register = (password, email) => {
 
   export const checkToken = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
+      credentials: 'include',
       method: 'GET',
       headers: {
         'Accept': 'application/json',
