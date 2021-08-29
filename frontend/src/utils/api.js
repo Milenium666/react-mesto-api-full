@@ -13,7 +13,10 @@
 
     getUserData() {
         return fetch(`${this._address}/users/me`, {
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
         .then(this._checkResponse)
     }
