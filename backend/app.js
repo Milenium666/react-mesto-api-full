@@ -19,12 +19,15 @@ const corsOption = require('./middlewares/cors');
 
 const { PORT = 80 } = process.env;
 
+const path = require('path');
+
 const app = express();
 
 app.use(cors(corsOption));
 app.use(cookieParser());
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, 'static')));
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
   useCreateIndex: true,

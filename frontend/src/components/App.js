@@ -164,8 +164,9 @@ function App() {
 
 
 
-  const handleRegister = (email, password) => {
-    auth.register(email, password)
+  const handleRegister = ({email, password}) => {
+    console.log(email, password);
+    auth.register({email, password})
       .then(() => {
         //меняет содержимое попапа
         setPopupIsCorrect(true)
