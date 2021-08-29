@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 
@@ -34,19 +35,19 @@ function App() {
   // Пользовательские данные которые передаются в Header при входе на строаницу с карточками
   const [userData, setUserData] = React.useState({
     email: '',
-    _id: ''
+    id: ''
   });
   const history = useHistory()
   const [popupIsCorrect, setPopupIsCorrect] = React.useState();
   const [isCorrectPopupOpen, setIsCorrectPopupOpen] = React.useState(false);
 
- 
 
   React.useEffect(()=>{
     getUserInfo();
-    
 
-  }, [])
+
+  }, []);
+
 
 
   React.useEffect(() => {

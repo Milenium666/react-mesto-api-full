@@ -5,26 +5,25 @@
 // eslint-disable-next-line max-len
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const DataNotFound = require('./error/DataNotFound');
+const { celebrate, Joi, errors } = require('celebrate');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
-const path = require('path');
-const { celebrate, Joi, errors } = require('celebrate');
 const validate = require('./middlewares/validate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { cors } = require('./middlewares/cors');
+const DataNotFound = require('./error/DataNotFound');
+const corsOption = require('./middlewares/cors');
 
 const { PORT = 80 } = process.env;
 
 const app = express();
-app.use(cors);
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors(corsOption));
+app.use(cookieParser());
+app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
@@ -32,7 +31,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
-
 app.use(requestLogger);
 app.post('/signup', celebrate({
   body: Joi.object().keys({

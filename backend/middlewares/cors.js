@@ -2,12 +2,14 @@
 const allowedCors = [
   'https://milenium666.nomoredomains.monster',
   'http://milenium666.nomoredomains.monster',
+  'https://milenium666.nomoredomains.rocks',
+  'http://milenium666.nomoredomains.rocks',
   'localhost:3000',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
-const cors = (req, res, next) => {
+const corsOption = (req, res, next) => {
   const { origin } = req.headers;
   // Сохраняем источник запроса в переменную origin
   // проверяем, что источник запроса есть среди разрешённых
@@ -29,4 +31,4 @@ const cors = (req, res, next) => {
   next();
 };
 
-module.exports = cors;
+module.exports = corsOption;
