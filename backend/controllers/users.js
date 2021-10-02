@@ -52,7 +52,6 @@ const getUsersId = (req, res, next) => {
       if (err.name === 'ReferenceError') {
         next(new DataNotFound('Невалидный id'));
       }
-      console.log(err)
       next(new ServerError('Ошибка на стороне сервера'));
     });
 };

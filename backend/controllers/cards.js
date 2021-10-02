@@ -16,7 +16,9 @@ const NoRight = require('../error/NoRight');
 const getCard = (req, res, next) => {
   Card.find({})
     .then((cards) => res.status(OK).send({ cards }))
-    .catch(next(new DataNotFound('Карточка не найдена')));
+    .catch(() => {
+      next(new DataNotFound('Карточки не найдены'));
+    });
 };
 
 const createCard = (req, res, next) => {
