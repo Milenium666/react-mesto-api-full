@@ -1,6 +1,8 @@
 // eslint-disable-next-line max-len
 /* eslint-disable consistent-return */
 /* eslint-disable no-undef */
+/* eslint-disable linebreak-style */
+
 const Card = require('../models/card');
 const {
   OK,

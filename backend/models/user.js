@@ -1,6 +1,8 @@
 /* eslint-disable import/newline-after-import */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-escape */
+/* eslint-disable linebreak-style */
+
 const isEmail = require('validator/lib/isEmail');
 const validator = require('validator');
 const mongoose = require('mongoose');

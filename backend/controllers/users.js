@@ -6,6 +6,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable consistent-return */
+/* eslint-disable linebreak-style */
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');

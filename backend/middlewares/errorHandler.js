@@ -1,6 +1,7 @@
 /* eslint-disable no-unreachable */
 /* eslint-disable no-new */
 /* eslint-disable no-unused-expressions */
+/* eslint-disable linebreak-style */
 
 const errorHandler = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
