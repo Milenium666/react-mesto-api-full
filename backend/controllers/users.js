@@ -25,10 +25,13 @@ const RepeatRegistEmail = require('../error/RepeatRegistEmail');
 const salt = 10;
 
 const getUsers = (req, res, next) => User.find({})
-  .then((users) => res.status(OK).send({
-    users,
+  .then((user) => res.status(OK).send({
+    user,
   }))
-  .catch(next(new ServerError('Ошибка на стороне сервера')));
+  .catch(() => {
+    next(new ServerError('Ошибка на стороне сервера'));
+
+  });
 
 const getUsersId = (req, res, next) => {
   const {
