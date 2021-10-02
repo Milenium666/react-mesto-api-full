@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
 /* eslint-disable arrow-parens */
 /* eslint-disable no-shadow */
@@ -30,7 +31,6 @@ const getUsers = (req, res, next) => User.find({})
   }))
   .catch(() => {
     next(new ServerError('Ошибка на стороне сервера'));
-
   });
 
 const getUsersId = (req, res, next) => {
@@ -189,7 +189,7 @@ const login = (req, res, next) => {
 };
 
 const getUserData = (req, res, next) => {
-  const id = req.user._id;
+  const id = req.user.id;
   return User.findById(id)
     .then((user) => {
       if (!user) {
