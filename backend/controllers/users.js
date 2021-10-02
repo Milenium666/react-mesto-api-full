@@ -38,20 +38,21 @@ const getUsersId = (req, res, next) => {
     userId,
   } = req.params;
   return User.findById({
-    id: userId,
+    _id: userId,
   })
     .then((user) => {
       if (!user) {
         return next(new DataNotFound(`Нет пользователя с id=${_id}`));
       }
       res.status(OK).send({
-        data: user,
+        user
       });
     })
     .catch((err) => {
       if (err.name === 'ReferenceError') {
         next(new DataNotFound('Невалидный id'));
       }
+      console.log(err)
       next(new ServerError('Ошибка на стороне сервера'));
     });
 };
