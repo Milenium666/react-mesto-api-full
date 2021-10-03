@@ -1,3 +1,5 @@
+/* eslint-disable linebreak-style */
+
 class NoRight extends Error {
   constructor(message) {
     super(message);

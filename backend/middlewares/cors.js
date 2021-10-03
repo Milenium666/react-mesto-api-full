@@ -1,4 +1,6 @@
 /* eslint-disable consistent-return */
+/* eslint-disable linebreak-style */
+
 const allowedCors = [
   'https://milenium666.nomoredomains.monster',
   'http://milenium666.nomoredomains.monster',
@@ -29,7 +31,7 @@ const corsOption = (req, res, next) => {
     return res.end();
   }
 
-  next();
+  return next();
 };
 
 module.exports = corsOption;

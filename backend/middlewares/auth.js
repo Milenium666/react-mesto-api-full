@@ -1,4 +1,6 @@
 /* eslint-disable consistent-return */
+/* eslint-disable linebreak-style */
+
 const jwt = require('jsonwebtoken');
 const { TOKEN_SEKRET } = require('../constans/constans');
 const IncorrectEmailAndPass = require('../error/IncorrectEmailAndPass');

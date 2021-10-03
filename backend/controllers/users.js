@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
 /* eslint-disable arrow-parens */
 /* eslint-disable no-shadow */
@@ -6,6 +7,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable consistent-return */
+/* eslint-disable linebreak-style */
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
@@ -23,24 +26,26 @@ const RepeatRegistEmail = require('../error/RepeatRegistEmail');
 const salt = 10;
 
 const getUsers = (req, res, next) => User.find({})
-  .then((users) => res.status(OK).send({
-    users,
+  .then((user) => res.status(OK).send({
+    user,
   }))
-  .catch(next(new ServerError('Ошибка на стороне сервера')));
+  .catch(() => {
+    next(new ServerError('Ошибка на стороне сервера'));
+  });
 
 const getUsersId = (req, res, next) => {
   const {
     userId,
   } = req.params;
   return User.findById({
-    id: userId,
+    _id: userId,
   })
     .then((user) => {
       if (!user) {
         return next(new DataNotFound(`Нет пользователя с id=${_id}`));
       }
       res.status(OK).send({
-        data: user,
+        user
       });
     })
     .catch((err) => {
@@ -184,7 +189,7 @@ const login = (req, res, next) => {
 };
 
 const getUserData = (req, res, next) => {
-  const id = req.user._id;
+  const id = req.user.id;
   return User.findById(id)
     .then((user) => {
       if (!user) {
