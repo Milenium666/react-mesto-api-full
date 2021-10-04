@@ -59,7 +59,7 @@ const getUsersId = (req, res, next) => {
 const createUser = (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    next(new IncorectData('Email или Пароль отсутствуют'));
+    return next(new IncorectData('Email или Пароль отсутствуют'));
   }
   User.findOne({ email })
     .then((user) => {
@@ -190,6 +190,7 @@ const login = (req, res, next) => {
 
 const getUserData = (req, res, next) => {
   const id = req.user.id;
+  console.log(req.user);
   return User.findById(id)
     .then((user) => {
       if (!user) {

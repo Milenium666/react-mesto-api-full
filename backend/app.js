@@ -6,7 +6,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
-// const cors = require('cors');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const { login, createUser } = require('./controllers/users');
@@ -15,7 +15,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const validate = require('./middlewares/validate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const DataNotFound = require('./error/DataNotFound');
-// const corsOption = require('./middlewares/cors');
+const corsOption = require('./middlewares/cors');
 
 const { PORT = 8000 } = process.env;
 
@@ -23,18 +23,19 @@ const path = require('path');
 
 const app = express();
 
-// app.use(cors(corsOption));
+app.use(cors(corsOption));
 
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'static')));
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(requestLogger);
 app.post('/signup', celebrate({
   body: Joi.object().keys({
