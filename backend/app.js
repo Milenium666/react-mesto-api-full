@@ -17,7 +17,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const DataNotFound = require('./error/DataNotFound');
 // const corsOption = require('./middlewares/cors');
 
-const { PORT = 8000 } = process.env;
+const { PORT = 8080 } = process.env;
 
 const path = require('path');
 

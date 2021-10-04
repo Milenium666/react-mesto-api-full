@@ -27,7 +27,7 @@ const salt = 10;
 
 const getUsers = (req, res, next) => User.find({})
   .then((user) => res.status(OK).send({
-    user,
+    user
   }))
   .catch(() => {
     next(new ServerError('Ошибка на стороне сервера'));
@@ -38,7 +38,7 @@ const getUsersId = (req, res, next) => {
     userId,
   } = req.params;
   return User.findById({
-    _id: userId,
+    id: userId,
   })
     .then((user) => {
       if (!user) {
@@ -189,7 +189,9 @@ const login = (req, res, next) => {
 };
 
 const getUserData = (req, res, next) => {
-  const id = req.user.id;
+  const id = req.user;
+console.log(req.user.id);
+console.log(req.user);
   return User.findById(id)
     .then((user) => {
       if (!user) {
