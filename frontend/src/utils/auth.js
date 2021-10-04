@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+export const BASE_URL = 'https://milenium666.nomoredomains.rocks';
+
+=======
 export const BASE_URL = 'milenium666.nomoredomains.rocks';
+>>>>>>> 11642e84a383b8740bf211edf02de65a2f485a2f
 const checkResponse = (response) => response.ok ? response.json() : Promise.reject(`Ошибка: ${response.status}`)
 
 export const register = ({password, email}) => {
