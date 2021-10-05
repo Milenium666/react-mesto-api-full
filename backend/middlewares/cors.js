@@ -4,10 +4,10 @@
 const allowedCors = [
   'https://milenium666.nomoredomains.monster',
   'http://milenium666.nomoredomains.monster',
-  'https://milenium666.nomoredomains.rocks',
-  'http://milenium666.nomoredomains.rocks',
-  'http://localhost:3000',
-  'https://localhost:3000',
+  'https://milenium666.nomoredomains.rocks/api',
+  'http://milenium666.nomoredomains.rocks/api',
+  'http://localhost:8080/api',
+  'https://localhost:8080/api',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';

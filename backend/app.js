@@ -16,7 +16,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const validate = require('./middlewares/validate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const DataNotFound = require('./error/DataNotFound');
-// const corsOption = require('./middlewares/cors');
+const corsOption = require('./middlewares/cors');
 
 const { PORT = 8080 } = process.env;
 
@@ -24,7 +24,7 @@ const path = require('path');
 
 const app = express();
 
-app.use(cors());
+app.use(cors(corsOption));
 
 app.use(express.json());
 app.use(cookieParser());
