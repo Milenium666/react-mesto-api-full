@@ -29,7 +29,8 @@ const corsOption = (req, res, next) => {
     // завершаем обработку запроса и возвращаем результат клиенту
     return res.end();
   }
-
+  console.log('what is next?');
+  console.log(next);
   return next();
 };
 
