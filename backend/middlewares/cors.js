@@ -10,14 +10,13 @@ const allowedCors = [
   'https://localhost:8080/api',
 ];
 
-const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
-
 const corsOption = (req, res, next) => {
   const { origin } = req.headers;
   // Сохраняем источник запроса в переменную origin
   // проверяем, что источник запроса есть среди разрешённых
   const { method } = req;
   const requestHeaders = req.headers['access-control-request-headers'];
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   if (allowedCors.includes(origin)) {
     // устанавливаем заголовок, который разрешает браузеру запросы с этого источника
     res.header('Access-Control-Allow-Origin', origin);
