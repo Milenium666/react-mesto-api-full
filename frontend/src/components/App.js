@@ -179,7 +179,7 @@ function App() {
     auth.authorize(email, password)
       .then(data => {
         const { token } = data
-        localStorage.setItem('jwt', token)
+        // localStorage.setItem('jwt', token)
         setLoggedIn(true)
         history.push('/')
 

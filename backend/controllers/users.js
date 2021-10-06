@@ -85,7 +85,6 @@ const createUser = (req, res, next) => {
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        console.log(err);
         return next(new IncorectData('Введены некрректные данные при создании пользователя'));
       }
       next(new ServerError('Ошибка на стороне сервера'));
@@ -189,9 +188,6 @@ const login = (req, res, next) => {
 };
 
 const getUserData = (req, res, next) => {
-
-
-  console.log(req.user);
 
   const id = req.user._id;
 
