@@ -98,7 +98,7 @@
 }
 
     const api = new Api( {
-        address: 'http://milenium666.nomoredomains.rocks/api',
+        address: 'http://milenium666.nomoredomains.rocks',
     });
 
 export default api;

@@ -1,5 +1,5 @@
 
-export const BASE_URL = 'http://milenium666.nomoredomains.rocks/api';
+export const BASE_URL = 'http://milenium666.nomoredomains.rocks';
 const checkResponse = (response) => response.ok ? response.json() : Promise.reject(`Ошибка: ${response.status}`)
 
 export const register = ({password, email}) => {

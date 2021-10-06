@@ -4,10 +4,10 @@
 const allowedCors = [
   'https://milenium666.nomoredomains.monster',
   'http://milenium666.nomoredomains.monster',
-  'https://milenium666.nomoredomains.rocks/api',
-  'http://milenium666.nomoredomains.rocks/api',
-  'http://localhost:8080/api',
-  'https://localhost:8080/api',
+  'https://milenium666.nomoredomains.rocks',
+  'http://milenium666.nomoredomains.rocks',
+  'http://localhost:8080',
+  'https://localhost:8080',
 ];
 
 const corsOption = (req, res, next) => {
