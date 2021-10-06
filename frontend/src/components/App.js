@@ -46,7 +46,7 @@ function App() {
     getUserInfo();
 
 
-  }, []);
+  });
 
 
 
@@ -72,7 +72,7 @@ function App() {
         )
       })
       .catch(err => console.log(err))
-  }, [])
+  });
 
 
   function handleCardLike(card) {
@@ -175,11 +175,11 @@ function App() {
       })
       .catch(handleError)
   }
-  const handleLogin = (email, password) => {
-    auth.authorize(email, password)
+  const handleLogin = ({email, password}) => {
+    auth.authorize({email, password})
       .then(data => {
         const { token } = data
-        // localStorage.setItem('jwt', token)
+        localStorage.setItem('jwt', token)
         setLoggedIn(true)
         history.push('/')
 
