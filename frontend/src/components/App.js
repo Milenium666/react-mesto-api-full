@@ -46,20 +46,24 @@ function App() {
     getUserInfo();
 
 
-  });
+  }, [loggedIn]);
 
 
 
   React.useEffect(() => {
-    api.getUserData()
+    const jwt = localStorage.getItem("jwt");
+    if(loggedIn)
+{    api.getUserData(jwt)
       .then(res => {
         setCurrentUser(res)
       })
-      .catch(err => console.log(err))
-  }, [])
+      .catch(err => console.log(err))}
+  }, [loggedIn])
 
   React.useEffect(() => {
-    api.getCards()
+    const jwt = localStorage.getItem("jwt");
+    if(loggedIn)
+{    api.getCards(jwt)
       .then((data) => {
         setCards(
           data.map((item) => ({
@@ -72,15 +76,16 @@ function App() {
         )
       })
       .catch(err => console.log(err))
-  });
+}  }, [loggedIn]);
 
 
   function handleCardLike(card) {
+    const jwt = localStorage.getItem("jwt");
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.likeCardStatus(card._id, !isLiked)
+    api.likeCardStatus(card._id, !isLiked, jwt)
       .then((newCard) => {
         setCards((state) => state.map(
           (c) => c._id === card._id ? newCard : c));
@@ -89,16 +94,18 @@ function App() {
   }
 
   function handleCardDelete(card) {
+    const jwt = localStorage.getItem("jwt");
     api
-      .deleteCard(card._id)
+      .deleteCard(card._id, jwt)
       .then(() => {
         setCards(cards.filter(item => item._id !== card._id));
       })
       .catch(err => console.log(err));
   }
   function handleUpdateUser({ name, about }) {
+    const jwt = localStorage.getItem("jwt");
     api
-      .editProfile({ name, about })
+      .editProfile({ name, about }, jwt)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -106,8 +113,9 @@ function App() {
       .catch((err) => console.log(err));
   }
   function handleUpdateAavatar({ avatar }) {
+    const jwt = localStorage.getItem("jwt");
     api
-      .updateAvatar({ avatar })
+      .updateAvatar({ avatar }, jwt)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -115,7 +123,7 @@ function App() {
       .catch((err) => console.log(err));
   }
   function handleAddPlaceSubmit({ name, link }) {
-    api.addNewCard({ name, link })
+    api.addNewCard({ name, link }, jwt)
       .then((newCard) => {
         setCards([newCard, ...cards]);
 
@@ -176,10 +184,11 @@ function App() {
       .catch(handleError)
   }
   const handleLogin = ({email, password}) => {
+    console.log(email, password);
     auth.authorize({email, password})
-      .then(data => {
-        const { token } = data
-        localStorage.setItem('jwt', token)
+      .then(() => {
+        localStorage.setItem('jwt')
+        console.log('jwt')
         setLoggedIn(true)
         history.push('/')
 
@@ -193,7 +202,7 @@ function App() {
     if (jwt) {
       auth.checkToken(jwt)
         .then(data => {
-          const { email, _id } = data.data
+          const { email, _id } = data.user
           setUserData({
             email, _id
           })
@@ -205,12 +214,14 @@ function App() {
     }
   }
 
+
   const onSignOut = () => {
     localStorage.removeItem('jwt');
     setLoggedIn(false);
     history.push('/signin');
   }
 
+ 
   return (
     <CurrentUserContext.Provider value={currentUser}>
 

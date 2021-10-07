@@ -22,7 +22,7 @@ function Login({onLogin}) {
             return
         }
         const {email, password} = data
-        onLogin(email, password)
+        onLogin({email, password})
         
     }
     

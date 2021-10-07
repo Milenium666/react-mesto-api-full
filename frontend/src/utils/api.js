@@ -11,29 +11,35 @@
     
     }
 
-    getUserData() {
+    getUserData(token) {
         return fetch(`${this._address}/users/me`, {
-            credentials: 'include',
+            // credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
             }
         })
         .then(this._checkResponse)
     }
 
-    getCards() {
+    getCards(token) {
         return fetch(`${this._address}/cards`, {
-            credentials: 'include'
+            // credentials: 'include'
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
         })
         .then(this._checkResponse)
     }
 
-    editProfile({name, about}) {
+    editProfile({name, about}, token) {
         return fetch(`${this._address}/users/me`, {
-            credentials: 'include',
+            // credentials: 'include',
             method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
                 name,
@@ -43,12 +49,13 @@
         .then(this._checkResponse)
     }
 
-    addNewCard({name, link}) {
+    addNewCard({name, link}, token) {
         return fetch(`${this._address}/cards`, {
-            credentials: 'include',
+            // credentials: 'include',
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
                 name,
@@ -59,20 +66,25 @@
         .then(this._checkResponse)
     }
 
-    deleteCard(cardId) {
+    deleteCard(cardId, token) {
         return fetch(`${this._address}/cards/${cardId}`, {
-            credentials: 'include',
+            // credentials: 'include',
             method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+              }
         })
         .then(this._checkResponse)
     }
 
-    likeCardStatus(cardId, like) {
+    likeCardStatus(cardId, like, token) {
         return fetch(`${this._address}/cards/${cardId}/likes`, {
-        credentials: 'include',
+        // credentials: 'include',
         method: like ? 'PUT' : 'DELETE',
         headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
         }
     })
         .then(this._checkResponse)
@@ -80,12 +92,13 @@
 
 
 
-    updateAvatar({avatar}) {
+    updateAvatar({avatar}, token) {
         return fetch(`${this._address}/users/me/avatar`, {
-            credentials: 'include',
+            // credentials: 'include',
             method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify({
                 avatar
@@ -98,7 +111,7 @@
 }
 
     const api = new Api( {
-        address: 'http://milenium666.nomoredomains.rocks',
+        address: 'https://milenium666.nomoredomains.rocks',
     });
 
 export default api;
