@@ -7,12 +7,15 @@ const IncorrectEmailAndPass = require('../error/IncorrectEmailAndPass');
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
-
   if (!authorization || !authorization.startsWith('Bearer ')) {
     return next(new IncorrectEmailAndPass('Необходима авторизация'));
   }
+  // if (!req.cookies.token) {
+  //   return next(new IncorrectEmailAndPass('Необходима авторизация'));
+  // }
 
   const token = authorization.replace('Bearer ', '');
+  // const token = req.cookies.token;
   let payload;
 
   try {

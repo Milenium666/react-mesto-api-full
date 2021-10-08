@@ -54,8 +54,8 @@ function App() {
     const jwt = localStorage.getItem("jwt");
     if(loggedIn)
 {    api.getUserData(jwt)
-      .then(res => {
-        setCurrentUser(res)
+      .then((data) => {
+        setCurrentUser(data.user)
       })
       .catch(err => console.log(err))}
   }, [loggedIn])
@@ -66,7 +66,7 @@ function App() {
 {    api.getCards(jwt)
       .then((data) => {
         setCards(
-          data.map((item) => ({
+          data.cards.map((item) => ({
             name: item.name,
             link: item.link,
             _id: item._id,
@@ -102,31 +102,33 @@ function App() {
       })
       .catch(err => console.log(err));
   }
-  function handleUpdateUser({ name, about }) {
+  function handleUpdateUser({name, about}) {
     const jwt = localStorage.getItem("jwt");
     api
-      .editProfile({ name, about }, jwt)
-      .then((res) => {
-        setCurrentUser(res);
+      .editProfile({name, about}, jwt)
+      .then(() => {
+        
+
+        setCurrentUser({name, about});
         closeAllPopups();
       })
       .catch((err) => console.log(err));
   }
-  function handleUpdateAavatar({ avatar }) {
+  function handleUpdateAavatar(data) {
     const jwt = localStorage.getItem("jwt");
     api
-      .updateAvatar({ avatar }, jwt)
-      .then((res) => {
-        setCurrentUser(res);
+      .updateAvatar(data, jwt)
+      .then((data) => {
+        setCurrentUser(data);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
   }
-  function handleAddPlaceSubmit({ name, link }) {
-    api.addNewCard({ name, link }, jwt)
+  function handleAddPlaceSubmit(data) {
+    const jwt = localStorage.getItem("jwt");
+    api.addNewCard(data, jwt)
       .then((newCard) => {
         setCards([newCard, ...cards]);
-
         closeAllPopups();
       }).catch((err) => console.log(err));
   }
@@ -186,8 +188,9 @@ function App() {
   const handleLogin = ({email, password}) => {
     console.log(email, password);
     auth.authorize({email, password})
-      .then(() => {
-        localStorage.setItem('jwt')
+    .then(data => {
+      const { token } = data
+      localStorage.setItem('jwt', token)
         console.log('jwt')
         setLoggedIn(true)
         history.push('/')

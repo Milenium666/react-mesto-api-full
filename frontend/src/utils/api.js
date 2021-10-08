@@ -41,15 +41,12 @@
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({
-                name,
-                about
-            })
+            body: JSON.stringify({name, about})
         })
         .then(this._checkResponse)
     }
 
-    addNewCard({name, link}, token) {
+    addNewCard(data, token) {
         return fetch(`${this._address}/cards`, {
             // credentials: 'include',
             method: 'POST',
@@ -57,10 +54,7 @@
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({
-                name,
-                link
-            })
+            body: JSON.stringify(data)
 
         })
         .then(this._checkResponse)
@@ -92,7 +86,7 @@
 
 
 
-    updateAvatar({avatar}, token) {
+    updateAvatar(data, token) {
         return fetch(`${this._address}/users/me/avatar`, {
             // credentials: 'include',
             method: 'PATCH',
@@ -100,9 +94,7 @@
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify({
-                avatar
-            })
+            body: JSON.stringify(data)
         })
         .then(this._checkResponse)
 

@@ -170,9 +170,9 @@ const login = (req, res, next) => {
             next(new IncorrectEmailAndPass('Передан неверный Email или Пароль'));
           } else {
             const token = jwt.sign({ id: user._id }, TOKEN_SEKRET, { expiresIn: '7d' });
-            res.cookie('jwt', token, {
+            res.cookie('token', token, {
               maxAge: 3600000 * 24 * 7,
-              httpOnly: true,
+              // httpOnly: true,
               sameSite: 'None',
               secure: true,
             });
@@ -189,7 +189,8 @@ const login = (req, res, next) => {
 
 const getUserData = (req, res, next) => {
 
-  const id = req.user._id;
+  const id = req.user.id;
+  
 
   return User.findById(id)
     .then((user) => {
