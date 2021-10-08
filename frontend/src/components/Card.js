@@ -21,7 +21,6 @@ const isOwn = card.owner.id === currentUser.id;
 const cardDeleteButtonClassName = (
   `photo-grid__detete ${isOwn ? 'photo-grid__detete_visible' : 'photo-grid__detete_hidden'}`
 );
-
 // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
 const isLiked = card.likes.some(i => i.id === currentUser.id);
 
