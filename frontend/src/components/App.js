@@ -54,8 +54,8 @@ function App() {
     const jwt = localStorage.getItem("jwt");
     if(loggedIn)
 {    api.getUserData(jwt)
-      .then((data) => {
-        setCurrentUser(data.user)
+      .then((res) => {
+        setCurrentUser(res.user)
       })
       .catch(err => console.log(err))}
   }, [loggedIn])
@@ -106,20 +106,20 @@ function App() {
     const jwt = localStorage.getItem("jwt");
     api
       .editProfile({name, about}, jwt)
-      .then(() => {
+      .then((res) => {
         
 
-        setCurrentUser({name, about});
+        setCurrentUser(res.user);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
   }
-  function handleUpdateAavatar(data) {
+  function handleUpdateAavatar({avatar}) {
     const jwt = localStorage.getItem("jwt");
     api
-      .updateAvatar(data, jwt)
-      .then((data) => {
-        setCurrentUser(data);
+      .updateAvatar({avatar}, jwt)
+      .then((res) => {
+        setCurrentUser(res.user);
         closeAllPopups();
       })
       .catch((err) => console.log(err));

@@ -110,7 +110,7 @@ const updateUser = (req, res, next) => {
         return next(new DataNotFound(`Нет пользователя с id=${_id}`));
       }
       res.status(OK).send({
-        data: user,
+        user: user,
       });
     })
     .catch((err) => {
@@ -139,7 +139,7 @@ const updateUserAvatar = (req, res, next) => {
         next(new DataNotFound(`Нет пользователя с id=${_id}`));
       }
       res.status(OK).send({
-        data: user,
+        user: user,
       });
     })
 
@@ -170,12 +170,6 @@ const login = (req, res, next) => {
             next(new IncorrectEmailAndPass('Передан неверный Email или Пароль'));
           } else {
             const token = jwt.sign({ id: user._id }, TOKEN_SEKRET, { expiresIn: '7d' });
-            res.cookie('token', token, {
-              maxAge: 3600000 * 24 * 7,
-              // httpOnly: true,
-              sameSite: 'None',
-              secure: true,
-            });
 
             return res.status(OK).send({ token });
           }
