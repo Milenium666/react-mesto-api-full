@@ -15,15 +15,15 @@ const User = require('../models/user');
 
 const {
   OK,
-  TOKEN_SEKRET
+  salt
 } = require('../constans/constans');
 const IncorrectEmailAndPass = require('../error/IncorrectEmailAndPass');
 const DataNotFound = require('../error/DataNotFound');
 const ServerError = require('../error/ServerError');
 const IncorectData = require('../error/IncorectData');
 const RepeatRegistEmail = require('../error/RepeatRegistEmail');
+const { NODE_ENV, JWT_SECRET } = process.env;
 
-const salt = 10;
 
 const getUsers = (req, res, next) => User.find({})
   .then((user) => res.status(OK).send({
@@ -169,7 +169,9 @@ const login = (req, res, next) => {
           if (!isValid) {
             next(new IncorrectEmailAndPass('Передан неверный Email или Пароль'));
           } else {
-            const token = jwt.sign({ id: user._id }, TOKEN_SEKRET, { expiresIn: '7d' });
+            const token = jwt.sign({ id: user._id }, 
+              NODE_ENV === 'production' ? JWT_SECRET : 'super-strong-secret',
+              { expiresIn: '7d' });
 
             return res.status(OK).send({ token });
           }

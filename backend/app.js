@@ -4,6 +4,7 @@
 /* eslint-disable import/order */
 /* eslint-disable no-console */
 // eslint-disable-next-line max-len
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');

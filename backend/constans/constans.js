@@ -1,9 +1,6 @@
 /* eslint-disable linebreak-style */
 
 const OK = 200;
-const TOKEN_SEKRET = 'super-strong-secret';
+const salt = 10;
 
-module.exports = {
-  OK,
-  TOKEN_SEKRET,
-};
+module.exports = { OK ,salt };

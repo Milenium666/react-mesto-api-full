@@ -188,12 +188,10 @@ function App() {
       .catch(handleError)
   }
   const handleLogin = ({email, password}) => {
-    console.log(email, password);
     auth.authorize({email, password})
     .then(data => {
       const { token } = data
       localStorage.setItem('jwt', token)
-        console.log('jwt')
         setLoggedIn(true)
         history.push('/')
 
