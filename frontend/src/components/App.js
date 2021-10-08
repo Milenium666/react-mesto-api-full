@@ -126,9 +126,9 @@ function App() {
       })
       .catch((err) => console.log(err));
   }
-  function handleAddPlaceSubmit(data) {
+  function handleAddPlaceSubmit({name, link}) {
     const jwt = localStorage.getItem("jwt");
-    api.addNewCard(data, jwt)
+    api.addNewCard({name, link}, jwt)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();

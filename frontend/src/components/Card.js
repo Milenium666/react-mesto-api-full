@@ -13,9 +13,10 @@ const handleLikeClick = () => {
 const handleDeleteClick = () => {
     onCardDelete(card)
 }
-
+console.log(card);
 // Определяем, являемся ли мы владельцем текущей карточки
 const isOwn = card.owner.id === currentUser.id;
+console.log(isOwn);
 
 // Создаём переменную, которую после зададим в `className` для кнопки удаления
 const cardDeleteButtonClassName = (

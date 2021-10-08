@@ -46,7 +46,7 @@
         .then(this._checkResponse)
     }
 
-    addNewCard(data, token) {
+    addNewCard({name, link}, token) {
         return fetch(`${this._address}/cards`, {
             // credentials: 'include',
             method: 'POST',
@@ -54,7 +54,7 @@
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({name, link})
 
         })
         .then(this._checkResponse)
