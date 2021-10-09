@@ -1,5 +1,4 @@
 /* eslint-disable prefer-destructuring */
-/* eslint-disable no-console */
 /* eslint-disable arrow-parens */
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
@@ -58,15 +57,11 @@ const getUsersId = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   const { email, password } = req.body;
-  if (!email || !password) {
-    return next(new IncorectData('Email или Пароль отсутствуют'));
-  }
   User.findOne({ email })
     .then((user) => {
       if (user) {
         return next(new RepeatRegistEmail('Пользователь с таким Email уже есть в системе'));
       }
-    });
 
   bcrypt.hash(password, salt)
     .then(hash => User.create({
@@ -89,6 +84,7 @@ const createUser = (req, res, next) => {
       }
       next(new ServerError('Ошибка на стороне сервера'));
     });
+  }).catch(next);
 };
 
 const updateUser = (req, res, next) => {

@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable prefer-template */
 /* eslint-disable no-path-concat */
 /* eslint-disable import/order */
@@ -37,7 +36,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -51,25 +49,26 @@ app.post('/signup', celebrate({
     avatar: Joi.string().custom(validate),
     email: Joi.string().email().required(),
     password: Joi.string().required().min(2),
-  }).unknown(true),
+  })
 }), createUser);
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().email().required(),
     password: Joi.string().required().min(2),
-  }).unknown(true),
+  })
 }), login);
 
 app.use('/', auth, require('./routes/users'));
 app.use('/', auth, require('./routes/cards'));
 
+app.use((req, res, next) => {
+  next(new DataNotFound('Запрос на несуществующий адрес'));
+});
 app.use(errorLogger);
 app.use(errorHandler);
 app.use(errors());
 
-app.use((req, res, next) => {
-  next(new DataNotFound('Запрос на несуществующий адрес'));
-});
+
 
 app.listen(PORT, () => {
   console.log(`Приложение слушает ${PORT}`);

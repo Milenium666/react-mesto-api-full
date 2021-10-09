@@ -1,7 +1,8 @@
 
 **Сервис Mesto**
-публичный IP-адрес сервера: https://milenium666.nomoredomains.monster
-домен: 62.84.119.93
+публичный IP-адрес сервера: 62.84.119.93
+домен: https://milenium666.nomoredomains.monster
+домен сервера: https://milenium666.nomoredomains.rocks
 **Описание**
 сервис Mesto - это интерактивная страница, на которой можно:
 - добавлять и удалять фотографии

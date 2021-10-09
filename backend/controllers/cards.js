@@ -38,7 +38,7 @@ const createCard = (req, res, next) => {
 
 const deleteCard = (req, res, next) => {
   const userId = req.user.id;
-  Card.findByIdAndRemove(req.params.cardId, { new: true })
+  Card.findById(req.params.cardId)
 
     .then((card) => {
       if (!card) {
@@ -46,8 +46,11 @@ const deleteCard = (req, res, next) => {
       }
       if (userId !== card.owner.toString()) {
         next(new NoRight('Нет прав для удаления карточки'));
+      } else {
+        Card.deleteOne(card)
+          .then(() => res.status(OK).send({ card }))
       }
-      res.status(OK).send({ card });
+      
     })
     .catch((err) => {
       if (err.name === 'ReferenceError') {
