@@ -1,3 +1,4 @@
+/* eslint-disable space-in-parens */
 // eslint-disable-next-line max-len
 /* eslint-disable consistent-return */
 /* eslint-disable no-undef */
@@ -48,9 +49,8 @@ const deleteCard = (req, res, next) => {
         next(new NoRight('Нет прав для удаления карточки'));
       } else {
         Card.deleteOne(card)
-          .then(() => res.status(OK).send({ card }))
+          .then(() => res.status(OK).send({ card }));
       }
-      
     })
     .catch((err) => {
       if (err.name === 'ReferenceError') {

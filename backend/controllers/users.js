@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable arrow-parens */
 /* eslint-disable no-shadow */
@@ -21,8 +22,8 @@ const DataNotFound = require('../error/DataNotFound');
 const ServerError = require('../error/ServerError');
 const IncorectData = require('../error/IncorectData');
 const RepeatRegistEmail = require('../error/RepeatRegistEmail');
-const { NODE_ENV, JWT_SECRET } = process.env;
 
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = (req, res, next) => User.find({})
   .then((user) => res.status(OK).send({
@@ -63,28 +64,28 @@ const createUser = (req, res, next) => {
         return next(new RepeatRegistEmail('Пользователь с таким Email уже есть в системе'));
       }
 
-  bcrypt.hash(password, salt)
-    .then(hash => User.create({
-      name: req.body.name,
-      about: req.body.about,
-      avatar: req.body.avatar,
-      email: req.body.email,
-      password: hash, // записываем хеш в базу
-    }))
-    .then(({
-      email,
-      _id
-    }) => res.status(OK).send({
-      email,
-      _id
-    }))
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        return next(new IncorectData('Введены некрректные данные при создании пользователя'));
-      }
-      next(new ServerError('Ошибка на стороне сервера'));
-    });
-  }).catch(next);
+      bcrypt.hash(password, salt)
+        .then(hash => User.create({
+          name: req.body.name,
+          about: req.body.about,
+          avatar: req.body.avatar,
+          email: req.body.email,
+          password: hash, // записываем хеш в базу
+        }))
+        .then(({
+          email,
+          _id
+        }) => res.status(OK).send({
+          email,
+          _id
+        }))
+        .catch((err) => {
+          if (err.name === 'ValidationError') {
+            return next(new IncorectData('Введены некрректные данные при создании пользователя'));
+          }
+          next(new ServerError('Ошибка на стороне сервера'));
+        });
+    }).catch(next);
 };
 
 const updateUser = (req, res, next) => {
@@ -165,7 +166,7 @@ const login = (req, res, next) => {
           if (!isValid) {
             next(new IncorrectEmailAndPass('Передан неверный Email или Пароль'));
           } else {
-            const token = jwt.sign({ id: user._id }, 
+            const token = jwt.sign({ id: user._id },
               NODE_ENV === 'production' ? JWT_SECRET : 'super-strong-secret',
               { expiresIn: '7d' });
 
@@ -180,10 +181,7 @@ const login = (req, res, next) => {
 };
 
 const getUserData = (req, res, next) => {
-
   const id = req.user.id;
-  
-
   return User.findById(id)
     .then((user) => {
       if (!user) {

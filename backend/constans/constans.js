@@ -3,4 +3,4 @@
 const OK = 200;
 const salt = 10;
 
-module.exports = { OK ,salt };
+module.exports = { OK, salt };
