@@ -180,6 +180,9 @@ const login = (req, res, next) => {
     });
 };
 
+// if (!email || !password || !name) {
+//   next(new IncorectData(' переданы некорректные данные в метод создания'));
+// }
 const getUserData = (req, res, next) => {
   const id = req.user.id;
   return User.findById(id)

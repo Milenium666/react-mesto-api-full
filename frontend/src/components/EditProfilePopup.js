@@ -44,7 +44,7 @@ function EditProfilePopup ({isOpen, onClose, onUpdateUser}) {
                 id="user-name"
                 minLength="2"
                 maxLength="40"
-                placeholder="Имя Пользователя"
+                placeholder="Имя Пользователя"  
                 value={userName || ''}
                 onChange={handleChangeUserName}
                 required/>
