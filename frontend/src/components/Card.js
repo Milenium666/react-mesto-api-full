@@ -15,7 +15,7 @@ const handleDeleteClick = () => {
 }
 
 // Определяем, являемся ли мы владельцем текущей карточки
-const isOwn = card.owner.id === currentUser.id;
+const isOwn = card.owner === currentUser._id;
 
 
 // Создаём переменную, которую после зададим в `className` для кнопки удаления
@@ -23,7 +23,7 @@ const cardDeleteButtonClassName = (
   `photo-grid__detete ${isOwn ? 'photo-grid__detete_visible' : 'photo-grid__detete_hidden'}`
 );
 // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-const isLiked = card.likes.some(i => i.id === currentUser.id);
+const isLiked = card.likes.some(i => i._id === currentUser._id);
 
 // Создаём переменную, которую после зададим в `className` для кнопки лайка
 const cardLikeButtonClassName = `photo-grid__like ${

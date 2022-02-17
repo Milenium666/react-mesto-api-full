@@ -35,7 +35,7 @@ function App() {
   // Пользовательские данные которые передаются в Header при входе на строаницу с карточками
   const [userData, setUserData] = React.useState({
     email: '',
-    id: ''
+    _id: ''
   });
   const history = useHistory()
   const [popupIsCorrect, setPopupIsCorrect] = React.useState();
@@ -82,7 +82,7 @@ function App() {
   function handleCardLike(card) {
     const jwt = localStorage.getItem("jwt");
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i.id === currentUser.id);
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
 
 
 
