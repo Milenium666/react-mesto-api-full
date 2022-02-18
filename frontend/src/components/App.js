@@ -82,14 +82,16 @@ function App() {
   function handleCardLike(card) {
     const jwt = localStorage.getItem("jwt");
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i.id === currentUser.id);
 
 
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.likeCardStatus(card._id, !isLiked, jwt)
+
       .then((newCard) => {
         setCards((state) => state.map(
+          
           (c) => c._id === card._id ? newCard.card : c));
       })
       .catch(err => console.log(err))
