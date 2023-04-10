@@ -15,7 +15,7 @@
 * Просмотр картинки карточки
 * Выход из приложения
 
-Протестировать frontend-часть можно по [этой ссылке](https://milenium666.nomoredomains.monster)<br>
+Протестировать frontend-часть можно по [этой ссылке](https://mesto.milenium666.nomoredomains.monster)<br>
 Если вы не хотите регистрироваться, то можно войти по этим данным и протестировать приложение:  
 * Логин: test1test@test1.ru  
 * Пароль: test1test<br>  
