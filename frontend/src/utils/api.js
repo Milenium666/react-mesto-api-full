@@ -103,7 +103,8 @@
 }
 
     const api = new Api( {
-        address: 'https://milenium666.nomoredomains.rocks',
+        address: 'http://api.milenium666-mesto.ru',
+        //address: 'http://localhost:8080',
     });
 
 export default api;

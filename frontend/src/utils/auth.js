@@ -1,5 +1,8 @@
 
-export const BASE_URL = 'https://milenium666.nomoredomains.rocks';
+export const BASE_URL = 'http://api.milenium666-mesto.ru';
+//export const BASE_URL = 'http://localhost:8080';
+
+
 const checkResponse = (response) => response.ok ? response.json() : Promise.reject(`Ошибка: ${response.status}`)
 
 export const register = ({email, password}) => {
