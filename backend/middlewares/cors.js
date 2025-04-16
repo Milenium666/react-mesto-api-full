@@ -2,10 +2,8 @@
 /* eslint-disable linebreak-style */
 
 const allowedCors = [
-  'https://milenium666.nomoredomains.monster',
-  'http://milenium666.nomoredomains.monster',
-  'https://milenium666.nomoredomains.rocks',
-  'http://milenium666.nomoredomains.rocks',
+  'https://milenium666-mesto.ru',
+  'http://milenium666-mesto.ru',
   'http://localhost:8080',
   'https://localhost:8080',
   'http://localhost:3000',
