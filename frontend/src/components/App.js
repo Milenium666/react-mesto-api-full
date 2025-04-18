@@ -179,7 +179,6 @@ function App() {
 
 
   const handleRegister = ({email, password}) => {
-    console.log(email, password);
     auth.register({email, password})
       .then(() => {
         //меняет содержимое попапа
