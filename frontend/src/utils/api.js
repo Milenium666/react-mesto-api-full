@@ -103,7 +103,7 @@
 }
 
     const api = new Api( {
-        address: 'http://api.milenium666-mesto.ru',
+        address: 'https://api.milenium666-mesto.ru',
         //address: 'http://localhost:8080',
     });
 

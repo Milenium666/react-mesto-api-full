@@ -1,5 +1,5 @@
 
-export const BASE_URL = 'http://api.milenium666-mesto.ru';
+export const BASE_URL = 'https://api.milenium666-mesto.ru';
 //export const BASE_URL = 'http://localhost:8080';
 
 
