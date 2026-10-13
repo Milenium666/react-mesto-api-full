@@ -35,10 +35,13 @@
 * По роуту `/cards/:cardId/likes`. Метод `PUT`. Можно поставить лайк карточке. Сервер ответит данными карточки и вы увидете в графе `likes` ваш `_id`
 * По роуту `/cards/:cardId/likes`. Метод `DELETE`. Вы удалите поставленый вами ранее лайк. Сервер вам ответит данными карточки, а в графе  `likes` будет пусто.<br>
 
+<!--
 Домен сервера: <http://api.milenium666-mesto.ru> <br>
 Можно также протестировать без регистрации по этим данным:<br>
 * Логин: test1test@test1.ru  
 * Пароль: test1test<br> 
+-->
+
 ## Стек технологий и применяемые методы при создании проекта<br> 
 * Стек: `HTML` `CSS` `React` `Git` `Expres.js` `MongoDB` `Grid layout` `Flexbox`<br> 
 * Использованы хуки: `useState` `useEffect` `useContext` `useHistory`
